@@ -1,0 +1,27 @@
+import openai
+
+# Establecer tu API key de OpenAI
+api_key = "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"
+openai.api_key = api_key
+
+# Generar texto sobre ARM y Linux
+prompt_text = "Linux es un sistema operativo de código abierto ampliamente utilizado que se encuentra en el corazón de una amplia variedad de dispositivos, desde servidores y computadoras personales hasta dispositivos móviles, sistemas embebidos e incluso en la nube. Se distingue por su naturaleza modular, flexibilidad y robustez, y es uno de los sistemas operativos más utilizados en el mundo de la tecnología.
+
+ARM, por otro lado, no es un sistema operativo, sino una arquitectura de procesadores RISC (Reduced Instruction Set Computing) utilizada comúnmente en dispositivos móviles, tablets, sistemas embebidos, y más recientemente, en servidores. Es conocida por su eficiencia energética y su versatilidad, lo que la hace ideal para una amplia gama de dispositivos y aplicaciones.
+
+La combinación de Linux y la arquitectura ARM ha sido una asociación exitosa, ya que Linux ha sido adaptado y optimizado para ejecutarse en dispositivos basados en procesadores ARM. Esto ha permitido que la potencia y la flexibilidad del sistema operativo Linux estén disponibles en una amplia gama de dispositivos que utilizan la arquitectura ARM, proporcionando un entorno estable y personalizable para una variedad de aplicaciones.
+
+La colaboración entre Linux y ARM ha llevado a una proliferación de dispositivos que van desde teléfonos inteligentes y tablets hasta dispositivos IoT (Internet de las cosas), sistemas de automatización del hogar, sistemas de navegación vehicular y más, brindando a los usuarios una experiencia sólida y confiable respaldada por un sistema operativo robusto y una arquitectura de procesadores eficiente."
+
+response = openai.Completion.create(
+    engine="text-davinci-003",
+    prompt=prompt_text,
+    max_tokens=200  # Ajusta según la longitud deseada del texto
+)
+
+generated_text = response['choices'][0]['text']
+
+with open('arm_linux_content.txt', 'w') as file:
+    file.write(generated_text)
+
+print("Texto generado y guardado en 'arm_linux_content.txt'")
